@@ -1,0 +1,13 @@
+@import "src/assets/css/variables";
+
+.Container {
+  min-width: 50%;
+}
+
+.ButtonContainer {
+  padding: 10px;
+
+  & button {
+    width: 100%;
+  }
+}

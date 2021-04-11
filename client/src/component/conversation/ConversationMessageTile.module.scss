@@ -1,0 +1,31 @@
+.Container {
+  padding: 10px;
+
+  .Content {
+    background: black;
+    border-radius: 5px;
+    min-width: 30%;
+    padding: 10px;
+    text-align: left;
+    width: fit-content;
+
+    &.Mine {
+      background: royalblue;
+      margin-left: auto;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    .Sender {
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .MessageBody {
+      font-size: 18px;
+    }
+  }
+}

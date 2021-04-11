@@ -1,0 +1,45 @@
+.Container {
+  background: #f6f6f6;
+  border-radius: 5px;
+  display: flex;
+  height: 100px;
+  padding: 20px;
+  width: 100%;
+
+  .LeftSideContainer {
+    width: 30%;
+
+    .Avatar {
+      background: #6d1d33;
+      border-radius: 50%;
+      height: 100%;
+      margin: auto;
+      width: 100%;
+    }
+
+  }
+
+  .RightSideContainer {
+    margin-left: 20px;
+    text-align: center;
+
+    .Title {
+      color: black;
+      font-size: 20px;
+      font-weight: bold;
+      margin-left: 10px;
+    }
+
+    .LastMessageText {
+      color: lightgray;
+      font-size: 16px;
+    }
+
+  }
+
+}
+
+
+
+
+
