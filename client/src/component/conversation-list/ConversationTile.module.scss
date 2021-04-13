@@ -2,7 +2,7 @@
   background: #f6f6f6;
   border-radius: 5px;
   display: flex;
-  height: 100px;
+  height: 80px;
   padding: 20px;
   width: 100%;
 
@@ -10,29 +10,38 @@
     width: 30%;
 
     .Avatar {
-      background: #6d1d33;
+      background-position: center;
+      background-size: cover;
       border-radius: 50%;
+      border: 1px solid #282c34;
       height: 100%;
       margin: auto;
-      width: 100%;
+      width: 80px;
     }
 
   }
 
   .RightSideContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     margin-left: 20px;
     text-align: center;
 
+    p {
+      margin: 0;
+    }
+
     .Title {
       color: black;
-      font-size: 20px;
+      font-size: 1.5rem;
       font-weight: bold;
-      margin-left: 10px;
     }
 
     .LastMessageText {
-      color: lightgray;
-      font-size: 16px;
+      color: darkgray;
+      font-size: 1rem;
+      margin-top: 1rem;
     }
 
   }

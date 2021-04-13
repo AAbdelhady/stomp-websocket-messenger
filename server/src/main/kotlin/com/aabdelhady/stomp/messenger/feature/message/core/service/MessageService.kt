@@ -23,11 +23,12 @@ class MessageService(private val messageRepository: MessageRepository, private v
         return messageRepository.findByConversationId(conversationId).let { messageMapper.mapList(it) }
     }
 
-    fun sendMessage(request: MessageRequest) {
+    fun sendMessage(conversationId: Long, request: MessageRequest): MessageResponse {
         val authorizedUserId = getAuthorizedUserIdOrThrowUnauthorized()
-        val conversation = conversationService.findById(request.conversationId)
+        val conversation = conversationService.findById(conversationId)
         val message = saveNewMessage(conversation, authorizedUserId, request.text)
         pushMessageToRecipients(conversation, authorizedUserId, message)
+        return messageMapper.mapOne(message)
     }
 
     private fun saveNewMessage(conversation: Conversation, senderId: Long, text: String): Message {

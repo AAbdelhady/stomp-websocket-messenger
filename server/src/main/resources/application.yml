@@ -14,9 +14,9 @@ spring:
           google:
             client-id: 575651097525-k1r7mad1tok31f1tfgdt9mb825p9700o.apps.googleusercontent.com
             client-secret: 0z9eArnqEPWLr8W6CfJ-g2Lx
-#          facebook:
-#            client-id:
-#            client-secret:
+          facebook:
+            client-id: 2251096658440248
+            client-secret: 1ceb6c9e67c76caf269170e3eb0cb7d4
 jwt:
   key: yCdX5YowT730ScodFp9npvMpfoxDeWzcv3wm1g4LoSEyeHG3xDAOb1lBg3xf1G6qrvbLkXndj_xblJintYl_P4aa0wxtzJn1natxsRCzXNngMZ2OuEIAUBy-ePVf9COglrkbqaAwIyTEjUds6lZgyK1uSHGMCQDApx07D4hA2mlFxI1_-LJIOtkQEgbSii0jC5gBKui_l5vaqlKWbjnGXmoKlyTJOXX-tRR3yomtBLfVG71P0OadVd5Adxg6Uqi45vZttMXXgBwMPc1gcbCjY0CYZZ_QMghzizvlc7HCviHZjAflQh_xq7GiD9tW50Ri0wGJPJYDD9oYtUjYh2Fo0Q
 frontend:

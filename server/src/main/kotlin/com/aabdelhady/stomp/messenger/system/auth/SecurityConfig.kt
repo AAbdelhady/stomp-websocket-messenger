@@ -30,7 +30,8 @@ class SecurityConfig(
     val tokenAuthenticationFilter: TokenAuthenticationFilter,
     val socialAuthenticationSuccessHandler: AuthenticationSuccessHandler,
     val socialAuthenticationFailureHandler: AuthenticationFailureHandler,
-    val logoutHandler: LogoutHandler
+    val authenticationEntryPoint: CustomAuthenticationEntryPoint,
+    val logoutHandler: CustomLogoutHandler
 ) : WebSecurityConfigurerAdapter() {
     @Value("\${frontend.base-url}") private val frontendBaseUrl: String = ""
 
@@ -58,22 +59,22 @@ class SecurityConfig(
             .addLogoutHandler(logoutHandler)
             .logoutSuccessUrl(frontendBaseUrl)
             .and()
-//         .exceptionHandling()
-//         .authenticationEntryPoint(authenticationEntryPoint)
-//         .and()
-         .csrf()
-         .disable()
-         .addFilterBefore(tokenAuthenticationFilter, BasicAuthenticationFilter::class.java)
+            .exceptionHandling()
+            .authenticationEntryPoint(authenticationEntryPoint)
+            .and()
+            .csrf()
+            .disable()
+            .addFilterBefore(tokenAuthenticationFilter, BasicAuthenticationFilter::class.java)
         // .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
     }
 }
 
-/*@Component
+@Component
 class CustomAuthenticationEntryPoint : AuthenticationEntryPoint {
     override fun commence(request: HttpServletRequest, response: HttpServletResponse, e: AuthenticationException) {
         response.status = HttpServletResponse.SC_UNAUTHORIZED
     }
-}*/
+}
 
 @Component
 class CustomLogoutHandler : LogoutHandler {

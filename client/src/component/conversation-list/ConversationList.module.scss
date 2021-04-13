@@ -1,16 +1,20 @@
 .Container {
+  background: #2f4291;
+  border-radius: 5px;
   display: flex;
-  min-height: 100vh;
+  height: 100%;
   padding: 20px;
-  width: 100%;
+
   .ConversationListContainer {
     margin: 20px;
     text-align: center;
     width: 30%;
   }
+
   .ConversationViewContainer {
     margin: 20px;
     text-align: center;
     width: 70%;
   }
+
 }

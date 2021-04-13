@@ -13,7 +13,7 @@ class ConversationController(val conversationService: ConversationService, val m
     fun findAuthorizedUserConversations() = conversationService.findAuthorizedUserConversations()
 
     @PostMapping("{conversationId}")
-    fun sendMessage(@PathVariable conversationId: Long, @RequestBody @Valid request: MessageRequest) = messageService.sendMessage(request)
+    fun sendMessage(@PathVariable conversationId: Long, @RequestBody @Valid request: MessageRequest) = messageService.sendMessage(conversationId, request)
 
     @GetMapping("{conversationId}/messages")
     fun findConversationMessages(@PathVariable conversationId: Long) = messageService.findConversationMessages(conversationId)

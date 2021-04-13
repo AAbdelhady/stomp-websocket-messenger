@@ -1,0 +1,21 @@
+.Container {
+  display: flex;
+  width: 100%;
+
+  input {
+    border: none;
+    border-radius: 5px;
+    height: 2rem;
+    width: 90%;
+  }
+
+  button {
+    background: #282c34;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    margin-left: auto;
+    padding: 0 10px;
+  }
+}

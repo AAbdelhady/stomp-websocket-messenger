@@ -1,17 +1,36 @@
 .Container {
   display: flex;
+  flex-direction: column;
+  height: 100vh;
   padding: 20px;
   width: 90%;
 
-  .ConversationListContainer {
-    margin: 20px;
-    text-align: center;
-    width: 25%;
+  .Header {
+    padding: 20px;
+    button {
+      cursor: pointer;
+      padding: 5px;
+      width: 8rem;
+    }
   }
 
-  .ConversationViewContainer {
-    margin: 20px;
-    text-align: center;
-    width: 75%;
+  .Body {
+    display: flex;
+    height: 70vh;
+    margin-top: 20px;
+    padding: 20px;
+
+    .ConversationListContainer {
+      text-align: center;
+      width: 30%;
+    }
+
+    .ConversationViewContainer {
+      margin-left: 20px;
+      text-align: center;
+      width: 70%;
+    }
+
   }
+
 }

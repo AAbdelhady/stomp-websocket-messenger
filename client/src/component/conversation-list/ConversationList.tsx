@@ -1,11 +1,11 @@
-import React, {Dispatch} from 'react';
+import React from 'react';
 import classes from './ConversationList.module.scss';
 import {Conversation} from '../../model/conversation';
 import ConversationTile from './ConversationTile';
 
 interface Props {
     conversations: Conversation[],
-    setCurrentConversation: Dispatch<Conversation>
+    setCurrentConversation: (c: Conversation) => void
 }
 
 const ConversationList = ({conversations, setCurrentConversation}: Props) => {

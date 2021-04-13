@@ -12,3 +12,7 @@ export const fetchAuthorizedUserConversations = () => axios.get<Conversation[]>(
 
 export const fetchConversationMessages = (conversationId: number) => axios.get<Message[]>(`${CONVERSATION_ROOT}/${conversationId}/messages`)
 
+export const sendMessageInConversation = (conversationId: number, text: string) => axios.post<Message>(`${CONVERSATION_ROOT}/${conversationId}`, {text: text})
+
+export const logout = () => axios.post('logout')
+

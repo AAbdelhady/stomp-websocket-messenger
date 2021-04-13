@@ -19,7 +19,7 @@ const ConversationTile = ({conversation, conversationTileClicked}: Props) => {
             </div>
             <div className={classes.RightSideContainer}>
                 <div className={classes.Title}><p>{title}</p></div>
-                <div className={classes.LastMessageText}><p>some last message</p></div>
+                <div className={classes.LastMessageText}><p>{conversation.lastMessage?.text}</p></div>
             </div>
         </div>
     );

@@ -27,6 +27,6 @@ data class Message(
     val sent: Instant? = null
 }
 
-data class MessageRequest(@NotEmpty val text: String, @NotNull val conversationId: Long)
+data class MessageRequest(@NotEmpty val text: String)
 
 data class MessageResponse(val id: Long, val text: String, val sender: UserResponse, val sent: Instant)
