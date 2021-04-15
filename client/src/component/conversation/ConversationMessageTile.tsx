@@ -1,17 +1,17 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import classes from './ConversationMessageTile.module.scss';
 import {Message} from '../../model/message';
-import useAuthorizedUser from '../../hooks/useAuthorizedUser';
+import {User} from '../../model/user';
+import AuthorizedUserContext from '../../contexts/authorizedUserContext';
 
 interface Props {
     message: Message
 }
 
 const ConversationMessageTile = ({message}: Props) => {
-    const authorizedUser = useAuthorizedUser()
+    const authorizedUser = useContext<User|null>(AuthorizedUserContext)
     const messageTileContent = message.sender.id === authorizedUser?.id ?
-        myMessageContent(message) :
-        someoneElseMessageContent(message)
+        myMessageContent(message) : someoneElseMessageContent(message)
     return (
         <div className={classes.Container}>
             {messageTileContent}

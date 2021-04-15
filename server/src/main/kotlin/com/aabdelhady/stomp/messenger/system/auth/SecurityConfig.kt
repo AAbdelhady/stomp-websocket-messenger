@@ -49,6 +49,7 @@ class SecurityConfig(
             .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             .and()
             .authorizeRequests()
+            .antMatchers("/test").permitAll()
             .antMatchers("/**").authenticated()
             .and()
             .oauth2Login()

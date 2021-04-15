@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import classes from './ConversationTile.module.scss';
 import {Conversation} from '../../model/conversation';
-import useAuthorizedUser from '../../hooks/useAuthorizedUser';
+import {User} from '../../model/user';
+import AuthorizedUserContext from '../../contexts/authorizedUserContext';
 
 interface Props {
     conversation: Conversation,
@@ -9,7 +10,7 @@ interface Props {
 }
 
 const ConversationTile = ({conversation, conversationTileClicked}: Props) => {
-    const authorizedUser = useAuthorizedUser()
+    const authorizedUser = useContext<User|null>(AuthorizedUserContext)
     const title = conversation.participants.filter(p => p.id !== authorizedUser?.id).map(p => `${p.firstName} ${p.lastName}`).join(', ')
     const avatar = conversation.lastMessage?.sender.profilePictureUrl
     return (

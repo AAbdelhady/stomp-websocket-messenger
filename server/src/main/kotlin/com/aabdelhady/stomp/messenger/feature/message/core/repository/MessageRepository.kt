@@ -24,15 +24,8 @@ class MessageRepositoryImpl(private val entityManager: EntityManager) : MessageR
             select m.* from messages m where m.id in (
                 select (select m2.id from messages m2 where m2.conversation_id = c.id order by m2.sent desc limit 1)
                 from conversations c where c.id in (:conversation_ids)
-            )
-        """.trimIndent()
-        /*val sql = """
-            select m.* from messages m join (
-                select (select m2.id from messages m2 where m2.conversation_id = c.id order by m2.created desc limit 1) as id
-                from conversations c where c.id in (:conversation_ids)
-            ) as sub on m.id = sub.id
-        """.trimIndent()*/
+            )"""
         val q = entityManager.createNativeQuery(sql, Message::class.java).setParameter("conversation_ids", conversationIds)
-        return resultList<Message>(q).map { it.conversation.id to it }.toMap()
+        return resultList<Message>(q).associateBy { it.conversation.id }
     }
 }

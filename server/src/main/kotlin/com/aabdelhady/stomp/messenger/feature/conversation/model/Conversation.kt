@@ -4,6 +4,7 @@ import com.aabdelhady.stomp.messenger.feature.message.core.model.Message
 import com.aabdelhady.stomp.messenger.feature.message.core.model.MessageResponse
 import com.aabdelhady.stomp.messenger.feature.user.model.User
 import com.aabdelhady.stomp.messenger.feature.user.model.UserResponse
+import com.fasterxml.jackson.annotation.JsonInclude
 import org.hibernate.annotations.CreationTimestamp
 import org.hibernate.annotations.Formula
 import org.hibernate.annotations.UpdateTimestamp
@@ -33,4 +34,5 @@ class Conversation(participants: List<User>) {
     val modified: Instant? = null
 }
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 data class ConversationResponse(val id: Long, val participants: List<UserResponse>, val lastMessage: MessageResponse?)

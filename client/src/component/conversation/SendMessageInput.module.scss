@@ -17,5 +17,9 @@
     cursor: pointer;
     margin-left: auto;
     padding: 0 10px;
+    width: 8%;
+    &:disabled {
+      background: grey;
+    }
   }
 }

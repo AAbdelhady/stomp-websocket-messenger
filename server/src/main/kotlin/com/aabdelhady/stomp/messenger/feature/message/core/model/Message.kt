@@ -3,6 +3,7 @@ package com.aabdelhady.stomp.messenger.feature.message.core.model
 import com.aabdelhady.stomp.messenger.feature.conversation.model.Conversation
 import com.aabdelhady.stomp.messenger.feature.user.model.User
 import com.aabdelhady.stomp.messenger.feature.user.model.UserResponse
+import com.fasterxml.jackson.annotation.JsonInclude
 import org.hibernate.annotations.CreationTimestamp
 import java.time.Instant
 import javax.persistence.*
@@ -29,4 +30,5 @@ data class Message(
 
 data class MessageRequest(@NotEmpty val text: String)
 
-data class MessageResponse(val id: Long, val text: String, val sender: UserResponse, val sent: Instant)
+@JsonInclude(JsonInclude.Include.NON_NULL)
+data class MessageResponse(val id: Long, val text: String, val sender: UserResponse, val conversationId: Long, val sent: Instant)

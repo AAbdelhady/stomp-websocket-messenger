@@ -27,7 +27,7 @@ const SendMessageInput = ({conversation, onMessageSent}: Props) => {
     return (
         <div className={classes.Container}>
             <input type="text" value={text} onChange={onInputChange} onKeyPress={onKeyPress}/>
-            <button onClick={sendMessage}>Send</button>
+            <button onClick={sendMessage} disabled={!text}>Send</button>
         </div>
     );
 }

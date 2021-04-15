@@ -11,6 +11,6 @@ class MessageMapper(val userMapper: UserMapper) {
 
     fun mapOne(message: Message): MessageResponse {
         val senderResponse = userMapper.mapOne(message.sender)
-        return MessageResponse(message.id, message.text, senderResponse, message.sent!!)
+        return MessageResponse(message.id, message.text, senderResponse, message.conversation.id, message.sent!!)
     }
 }

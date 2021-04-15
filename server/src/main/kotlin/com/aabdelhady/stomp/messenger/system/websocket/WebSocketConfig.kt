@@ -17,7 +17,7 @@ object Destinations {
 @EnableWebSocketMessageBroker
 class WebSocketConfig : WebSocketMessageBrokerConfigurer {
     override fun registerStompEndpoints(registry: StompEndpointRegistry) {
-        registry.addEndpoint("ws").setAllowedOrigins("*").withSockJS()
+        registry.addEndpoint("ws").setAllowedOrigins("*").setAllowedOriginPatterns("http://localhost*")
     }
 
     override fun configureMessageBroker(config: MessageBrokerRegistry) {
