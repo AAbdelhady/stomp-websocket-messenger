@@ -11,7 +11,10 @@ function useWebSocketSubscription(destination: string, onMessage: (m: IMessage) 
             stompClient.subscribe(destination, onMessage)
             setSubscribed(true)
         }
-        return () => stompClient?.unsubscribe(destination)
+        return () => {
+            stompClient?.unsubscribe(destination)
+            setSubscribed(false)
+        }
     }, [stompClient, destination, onMessage, subscribed])
 }
 

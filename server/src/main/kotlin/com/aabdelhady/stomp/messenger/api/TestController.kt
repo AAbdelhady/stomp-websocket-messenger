@@ -14,10 +14,11 @@ import javax.validation.Valid
 @RestController
 @RequestMapping("test")
 class TestController(val messageWebSocketService: MessageWebSocketService, val userRegistry: SimpUserRegistry) {
+    var iterator = 1000L
     @GetMapping
     fun sendWebSocketMessage() {
         val user = UserResponse(2L, "asdsa", "aaf", null)
-        val tmp = MessageResponse(1000L, "some text " + System.currentTimeMillis(), user, 51L, Instant.now())
+        val tmp = MessageResponse(iterator++, "some text " + System.currentTimeMillis(), user, 51L, Instant.now())
         messageWebSocketService.pushNewMessage(1L, tmp)
     }
 

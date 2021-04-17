@@ -19,8 +19,6 @@ import java.util.*
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
-private const val REDIRECT_PAGE = "/redirect"
-
 @Component
 class SocialAuthenticationSuccessHandler(val userRepository: UserRepository, val tokenProvider: TokenProvider) : AuthenticationSuccessHandler {
     @Value("\${frontend.base-url}") private val frontendBaseUrl: String = ""
@@ -31,10 +29,9 @@ class SocialAuthenticationSuccessHandler(val userRepository: UserRepository, val
         val loggedInUser = userRepository.findByLoginId(details.loginId)
             .map { updateExistingSocialLoginUser(it, details) }
             .orElseGet { registerNewSocialLoginUser(details) }
-//        val loggedInUser = if (userOptional.isPresent) updateExistingSocialLoginUser(userOptional.get(), details) else registerNewSocialLoginUser(details)
         updateAuthorizedUserContext(loggedInUser)
         addTokenToResponse(loggedInUser, response)
-        DefaultRedirectStrategy().sendRedirect(request, response, frontendBaseUrl + REDIRECT_PAGE)
+        DefaultRedirectStrategy().sendRedirect(request, response, frontendBaseUrl)
     }
 
     private fun addTokenToResponse(loggedInUser: User, response: HttpServletResponse) {

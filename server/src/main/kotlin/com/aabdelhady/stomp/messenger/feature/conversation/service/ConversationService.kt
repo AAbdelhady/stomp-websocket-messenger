@@ -2,6 +2,7 @@ package com.aabdelhady.stomp.messenger.feature.conversation.service
 
 import com.aabdelhady.stomp.messenger.feature.conversation.mapper.ConversationMapper
 import com.aabdelhady.stomp.messenger.feature.conversation.model.Conversation
+import com.aabdelhady.stomp.messenger.feature.conversation.model.ConversationRequest
 import com.aabdelhady.stomp.messenger.feature.conversation.model.ConversationResponse
 import com.aabdelhady.stomp.messenger.feature.conversation.repository.ConversationRepository
 import com.aabdelhady.stomp.messenger.feature.user.repository.UserRepository
@@ -21,13 +22,13 @@ class ConversationService(private val conversationRepository: ConversationReposi
 
     fun findById(conversationId: Long): Conversation = conversationRepository.findById(conversationId).orElseThrow { NotFoundException() }
 
-    fun findOrCreateByParticipants(vararg participantsIds: Long): Conversation {
-        val participantsIdList = participantsIds.asList()
-        return conversationRepository.findByExactParticipantsIds(participantsIdList).orElseGet { createConversation(participantsIdList) }
+    fun findOrCreateByParticipants(request: ConversationRequest): Conversation {
+        val participantsIds = request.participantsIds
+        return conversationRepository.findByExactParticipantsIds(participantsIds).orElseGet { createConversation(participantsIds) }
     }
 
-    private fun createConversation(participantsIdList: List<Long>): Conversation {
-        val participants = userRepository.findAllById(participantsIdList)
+    private fun createConversation(participantsIds: List<Long>): Conversation {
+        val participants = userRepository.findAllById(participantsIds)
         return conversationRepository.save(Conversation(participants))
     }
 }

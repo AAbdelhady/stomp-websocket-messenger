@@ -10,6 +10,7 @@ import org.hibernate.annotations.Formula
 import org.hibernate.annotations.UpdateTimestamp
 import java.time.Instant
 import javax.persistence.*
+import javax.validation.constraints.NotEmpty
 
 @Entity
 @Table(name = "conversations")
@@ -33,6 +34,8 @@ class Conversation(participants: List<User>) {
     @UpdateTimestamp
     val modified: Instant? = null
 }
+
+data class ConversationRequest(@NotEmpty val participantsIds: List<Long>)
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 data class ConversationResponse(val id: Long, val participants: List<UserResponse>, val lastMessage: MessageResponse?)
