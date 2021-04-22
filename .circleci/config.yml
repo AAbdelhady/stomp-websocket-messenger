@@ -3,13 +3,16 @@ version: 2.1
 jobs:
   build:
     docker:
-      - image: circleci/openjdk:8-jdk
-    working_directory: ~/server
+      - image: circleci/maven@1.1
     steps:
-      - checkout:
-          path: ~/server
-      - run: mvn dependency:go-offline
+      - checkout
       - run: mvn test
+
+workflows:
+  version: 2
+  my_workflow:
+    jobs:
+      - build
 # orbs:
 #   maven: circleci/maven@1.1
 
