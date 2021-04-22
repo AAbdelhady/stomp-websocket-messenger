@@ -10,6 +10,7 @@ jobs:
           path: ~/stomp-websocket-messenger
       - run: ls -la /home/circleci/stomp-websocket-messenger/server
       - run: ls -la ~/stomp-websocket-messenger/server
+      - run: ls -la .
       - run: ./mvnw test
 workflows:
   version: 2
