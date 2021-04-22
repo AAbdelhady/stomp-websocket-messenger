@@ -20,7 +20,7 @@
         <jjwt.version>0.10.5</jjwt.version>
         <spring.oauth2.version>2.4.4</spring.oauth2.version>
         <faker.version>1.0.2</faker.version>
-        <testcontainers.version>1.15.2</testcontainers.version>
+        <testcontainers.version>1.15.3</testcontainers.version>
     </properties>
     <dependencies>
         <!-- Spring JPA -->
@@ -103,7 +103,7 @@
 
         <!-- Hibernate Validator -->
         <dependency>
-            <groupId>org.hibernate</groupId>
+            <groupId>org.hibernate.validator</groupId>
             <artifactId>hibernate-validator</artifactId>
             <version>${hibernate-validator.version}</version>
         </dependency>
@@ -131,6 +131,12 @@
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-test</artifactId>
             <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.junit.vintage</groupId>
+                    <artifactId>junit-vintage-engine</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <!-- Test Containers -->

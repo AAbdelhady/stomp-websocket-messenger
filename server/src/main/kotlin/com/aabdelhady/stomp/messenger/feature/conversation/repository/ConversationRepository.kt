@@ -2,22 +2,29 @@ package com.aabdelhady.stomp.messenger.feature.conversation.repository
 
 import com.aabdelhady.stomp.messenger.feature.conversation.model.Conversation
 import com.aabdelhady.stomp.messenger.system.util.optionalResult
+import com.aabdelhady.stomp.messenger.system.util.resultList
 import org.springframework.data.jpa.repository.JpaRepository
 import org.springframework.stereotype.Repository
 import java.util.*
 import javax.persistence.EntityManager
 
 @Repository
-interface ConversationRepository : JpaRepository<Conversation, Long>, ConversationRepositoryCustom {
-    fun findByParticipantsId(participantsId: Long): List<Conversation>
-}
+interface ConversationRepository : JpaRepository<Conversation, Long>, ConversationRepositoryCustom
 
 interface ConversationRepositoryCustom {
+    fun findByParticipantId(participantId: Long): List<Conversation>
     fun findByExactParticipantsIds(participantsIds: Collection<Long>): Optional<Conversation>
 }
 
 @Repository
 class ConversationRepositoryImpl(val entityManager: EntityManager) : ConversationRepositoryCustom {
+    override fun findByParticipantId(participantId: Long): List<Conversation> {
+        val sql = "select c.* from conversations c join conversation_participants cp where cp.user_id = :user_id"
+        return entityManager.createNativeQuery(sql, Conversation::class.java)
+            .setParameter("user_id", participantId)
+            .let { resultList(it) }
+    }
+
     override fun findByExactParticipantsIds(participantsIds: Collection<Long>): Optional<Conversation> {
         val sql = """
             select c.* from conversations c join conversation_participants cp

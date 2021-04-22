@@ -1,21 +1,21 @@
-import {useContext, useEffect, useState} from 'react';
-import {Client, IMessage} from '@stomp/stompjs';
+import {useContext, useEffect, useRef} from 'react';
+import {Client, IMessage, StompSubscription} from '@stomp/stompjs';
 import StompClientContext from '../contexts/stompClientContext';
 
 function useWebSocketSubscription(destination: string, onMessage: (m: IMessage) => void) {
     const stompClient = useContext<Client|null>(StompClientContext)
-    const [subscribed, setSubscribed] = useState<boolean>()
+    const subscription = useRef<StompSubscription>()
 
     useEffect(() => {
-        if (stompClient && !subscribed) {
-            stompClient.subscribe(destination, onMessage)
-            setSubscribed(true)
+        if (stompClient && !subscription.current) {
+            console.log('subscribing to ' + destination)
+            subscription.current = stompClient.subscribe(destination, onMessage)
         }
         return () => {
-            stompClient?.unsubscribe(destination)
-            setSubscribed(false)
+            subscription.current?.unsubscribe()
+            subscription.current = undefined
         }
-    }, [stompClient, destination, onMessage, subscribed])
+    }, [stompClient, destination, onMessage])
 }
 
 export default useWebSocketSubscription;

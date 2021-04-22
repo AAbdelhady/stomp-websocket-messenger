@@ -16,18 +16,19 @@ class ConversationService(private val conversationRepository: ConversationReposi
 
     fun findAuthorizedUserConversations(): List<ConversationResponse> {
         val authorizedUserId = getAuthorizedUserIdOrThrowUnauthorized()
-        val conversations = conversationRepository.findByParticipantsId(authorizedUserId)
+        val conversations = conversationRepository.findByParticipantId(authorizedUserId)
         return conversationMapper.mapList(conversations)
     }
 
     fun findById(conversationId: Long): Conversation = conversationRepository.findById(conversationId).orElseThrow { NotFoundException() }
 
     fun findOrCreateByParticipants(request: ConversationRequest): Conversation {
-        val participantsIds = request.participantsIds
+        val authorizedUserId = getAuthorizedUserIdOrThrowUnauthorized()
+        val participantsIds = request.participantsIds.toSet().plus(authorizedUserId)
         return conversationRepository.findByExactParticipantsIds(participantsIds).orElseGet { createConversation(participantsIds) }
     }
 
-    private fun createConversation(participantsIds: List<Long>): Conversation {
+    private fun createConversation(participantsIds: Collection<Long>): Conversation {
         val participants = userRepository.findAllById(participantsIds)
         return conversationRepository.save(Conversation(participants))
     }

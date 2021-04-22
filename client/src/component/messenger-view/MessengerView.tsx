@@ -3,7 +3,7 @@ import classes from './MessengerView.module.scss';
 import ConversationList from '../conversation-list/ConversationList';
 import {fetchAuthorizedUserConversations, logout} from '../../api/api';
 import {Conversation} from '../../model/conversation';
-import ConversationView from '../conversation/ConversationView';
+import ConversationView from '../conversation-view/ConversationView';
 
 const MessengerView = () => {
     const [conversations, setConversations] = useState<Conversation[]>([])
