@@ -2,12 +2,12 @@ version: 2.1
 
 jobs:
   build:
-    working_directory: ~/stomp-websocket-messenger
+    working_directory: ~/stomp-websocket-messenger/server
     docker:
       - image: circleci/openjdk:stretch
     steps:
       - checkout:
-          path: ~/stomp-websocket-messenger/server
+          path: ~/stomp-websocket-messenger
       - run: ls -la /home/circleci/stomp-websocket-messenger/server
       - run: ls -la ~/stomp-websocket-messenger/server
       - run: ./mvnw test
