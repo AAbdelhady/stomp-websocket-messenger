@@ -6,18 +6,17 @@ import com.aabdelhady.stomp.messenger.feature.user.model.User
 import com.aabdelhady.stomp.messenger.feature.user.repository.UserRepository
 import com.aabdelhady.stomp.messenger.test.createDummyConversation
 import com.aabdelhady.stomp.messenger.test.createDummyUser
-import org.junit.runner.RunWith
+import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.test.context.junit4.SpringRunner
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ActiveProfiles
+import org.springframework.test.context.junit.jupiter.SpringExtension
 import org.springframework.transaction.annotation.Transactional
-
+import org.testcontainers.containers.PostgreSQLContainer
 import org.testcontainers.junit.jupiter.Container
 import org.testcontainers.junit.jupiter.Testcontainers
-import org.testcontainers.containers.PostgreSQLContainer
 
-@RunWith(SpringRunner::class)
+@ExtendWith(SpringExtension::class)
 @SpringBootTest
 @ActiveProfiles("test")
 @Transactional

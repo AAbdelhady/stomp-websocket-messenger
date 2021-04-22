@@ -2,19 +2,16 @@
   background: #2f4291;
   border-radius: 5px;
   display: flex;
+  flex-direction: column;
   height: 100%;
   padding: 20px;
 
-  .ConversationListContainer {
-    margin: 20px;
-    text-align: center;
-    width: 30%;
+  .ConversationTilesContainer {
+    display: flex;
   }
 
-  .ConversationViewContainer {
-    margin: 20px;
-    text-align: center;
-    width: 70%;
+  .CreateConversationContainer {
+    margin-top: auto;
   }
 
 }

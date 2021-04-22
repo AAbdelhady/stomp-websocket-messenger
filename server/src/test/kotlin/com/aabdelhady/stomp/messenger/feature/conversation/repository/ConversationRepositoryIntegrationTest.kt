@@ -1,15 +1,15 @@
 package com.aabdelhady.stomp.messenger.feature.conversation.repository
 
 import com.aabdelhady.stomp.messenger.IntegrationTest
-import org.junit.Test
 import org.junit.jupiter.api.Assertions.*
+import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 
 internal class ConversationRepositoryIntegrationTest : IntegrationTest() {
     @Autowired private lateinit var conversationRepository: ConversationRepository;
 
     @Test
-    fun findByParticipantsIds_shouldReturnConversationWithExactParticipants() {
+    fun findByExactParticipantsIds_shouldReturnConversationWithExactParticipants() {
         // given
         val userA = createUser()
         val userB = createUser()

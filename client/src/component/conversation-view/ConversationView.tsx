@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import classes from './ConversationView.module.scss';
 import {Conversation} from '../../model/conversation';
 import {fetchConversationMessages} from '../../api/api';
@@ -21,15 +21,16 @@ const ConversationView = ({conversation}: Props) => {
 
     const messageTiles = messages.map(m => <ConversationMessageTile message={m} key={m.id}/>)
 
-    const pushNewMessage = (m: Message) => setMessages(existing =>[...existing, m])
+    const pushNewMessage = useCallback((m: Message) => setMessages(existing => [...existing, m]), [setMessages])
 
-
-    useWebSocketSubscription("/user/queue/message/message", (m: IMessage) => {
+    const newMessageCallback = useCallback((m: IMessage) => {
         const newMessage: Message = JSON.parse(m.body).payload
         if (conversation?.id === newMessage.conversationId) {
             pushNewMessage(newMessage)
         }
-    })
+    }, [pushNewMessage, conversation?.id])
+
+    useWebSocketSubscription("/user/queue/message/message", newMessageCallback)
 
     return (
         <div className={classes.Container}>

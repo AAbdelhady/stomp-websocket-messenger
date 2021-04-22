@@ -8,9 +8,13 @@ const CONVERSATION_ROOT = 'conversation';
 
 export const fetchAuthorizedUser = () => axios.get<User>(`${USER_ROOT}/me`)
 
+export const findUserByEmail = (email: string) => axios.get<User>(`${USER_ROOT}/search/${email}`)
+
 export const fetchAuthorizedUserConversations = () => axios.get<Conversation[]>(CONVERSATION_ROOT)
 
 export const fetchConversationMessages = (conversationId: number) => axios.get<Message[]>(`${CONVERSATION_ROOT}/${conversationId}/messages`)
+
+export const createConversationWithParticipants = (participantsIds: number[]) => axios.post<Conversation>(CONVERSATION_ROOT, {participantsIds: participantsIds})
 
 export const sendMessageInConversation = (conversationId: number, text: string) => axios.post<Message>(`${CONVERSATION_ROOT}/${conversationId}`, {text: text})
 
