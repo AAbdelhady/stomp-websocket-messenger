@@ -1,5 +1,5 @@
 version: 2.1
-machine: true
+
 jobs:
   build:
     working_directory: ~/project/server
@@ -17,10 +17,3 @@ workflows:
   my_workflow:
     jobs:
       - build
-# orbs:
-#   maven: circleci/maven@1.1
-
-# workflows:
-#   maven_test:
-#     jobs:
-#       - maven/test
