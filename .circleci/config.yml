@@ -1,5 +1,5 @@
 version: 2.1
-
+machine: true
 jobs:
   build:
     working_directory: ~/project/server
