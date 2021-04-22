@@ -6,7 +6,7 @@ jobs:
       - image: circleci/openjdk:stretch
     steps:
       - checkout
-      - run: cd ./server
+      - run: cd server
       - run: ls -la
       - run: ./mvnw test
 
