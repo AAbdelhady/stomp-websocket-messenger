@@ -7,7 +7,7 @@ jobs:
     working_directory: /home/circleci/project/server
     steps:
       - checkout
-      - run: ls -la /home/circleci/project/server/.mvn/wrapper/
+      - run: ls -R
       - run: /home/circleci/project/server/mvnw test
 workflows:
   version: 2
