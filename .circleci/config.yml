@@ -6,10 +6,8 @@ jobs:
       - image: circleci/openjdk:stretch
     steps:
       - checkout
-      - run: cd server
       - run: ls -la
-      - run: ./mvnw test
-
+      - run: ./server/mvnw test
 workflows:
   version: 2
   my_workflow:
