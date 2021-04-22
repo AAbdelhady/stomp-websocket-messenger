@@ -4,6 +4,7 @@ jobs:
   build:
     docker:
       - image: circleci/openjdk:stretch
+    working_directory: ~/project/server
     steps:
       - checkout
       - run: ls -la
