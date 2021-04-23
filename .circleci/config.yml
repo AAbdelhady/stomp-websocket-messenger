@@ -23,7 +23,7 @@ jobs:
       - run: ls -la /home/circleci/project/server
       - run: ls -la ~/project/server
       - run: ls -la .
-      - run: ./mvnw test -Dspring.datasource.url=jdbc:postgresql://root@localhost:5432/messenger-test
+      - run: ./mvnw test -Dspring.datasource.url=jdbc:postgresql://root@localhost/messenger-test
 
 workflows:
   version: 2
