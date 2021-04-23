@@ -12,23 +12,12 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.junit.jupiter.SpringExtension
 import org.springframework.transaction.annotation.Transactional
-import org.testcontainers.containers.PostgreSQLContainer
-import org.testcontainers.junit.jupiter.Container
-import org.testcontainers.junit.jupiter.Testcontainers
 
 @ExtendWith(SpringExtension::class)
 @SpringBootTest
 @ActiveProfiles("test")
 @Transactional
-@Testcontainers
 abstract class IntegrationTest {
-    @Container
-    val container = PostgreSQLContainer<Nothing>("postgres").apply {
-        start()
-        System.setProperty("TEST_DB_URL", jdbcUrl)
-        System.setProperty("TEST_DB_USERNAME", username)
-        System.setProperty("TEST_DB_PASSWORD", password)
-    }
 
     @Autowired private lateinit var userRepository: UserRepository
     @Autowired private lateinit var conversationRepository: ConversationRepository

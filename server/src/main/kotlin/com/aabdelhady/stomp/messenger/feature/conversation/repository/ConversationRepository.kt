@@ -19,7 +19,10 @@ interface ConversationRepositoryCustom {
 @Repository
 class ConversationRepositoryImpl(val entityManager: EntityManager) : ConversationRepositoryCustom {
     override fun findByParticipantId(participantId: Long): List<Conversation> {
-        val sql = "select c.* from conversations c join conversation_participants cp where cp.user_id = :user_id"
+        val sql = """
+            select c.* from conversations c 
+            where exists (select 1 from conversation_participants cp where cp.user_id = :user_id and cp.conversation_id = c.id)
+        """.trimIndent()
         return entityManager.createNativeQuery(sql, Conversation::class.java)
             .setParameter("user_id", participantId)
             .let { resultList(it) }
