@@ -8,7 +8,6 @@ import org.hibernate.annotations.CreationTimestamp
 import java.time.Instant
 import javax.persistence.*
 import javax.validation.constraints.NotEmpty
-import javax.validation.constraints.NotNull
 
 @Entity
 @Table(name = "messages")
@@ -25,7 +24,7 @@ data class Message(
 
     @Column(name = "sent", nullable = false, updatable = false)
     @CreationTimestamp
-    val sent: Instant? = null
+    var sent: Instant? = null
 }
 
 data class MessageRequest(@NotEmpty val text: String)
