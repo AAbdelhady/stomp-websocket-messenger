@@ -10,7 +10,7 @@ import javax.validation.Valid
 @RestController
 @RequestMapping("conversation")
 class ConversationController(val conversationService: ConversationService, val messageService: MessageService) {
-    @GetMapping
+    @GetMapping // TODO pagination
     fun findAuthorizedUserConversations() = conversationService.findAuthorizedUserConversations()
 
     @PostMapping
@@ -19,6 +19,6 @@ class ConversationController(val conversationService: ConversationService, val m
     @PostMapping("{conversationId}")
     fun sendMessage(@PathVariable conversationId: Long, @RequestBody @Valid request: MessageRequest) = messageService.sendMessage(conversationId, request)
 
-    @GetMapping("{conversationId}/messages")
+    @GetMapping("{conversationId}/messages") // TODO pagination
     fun findConversationMessages(@PathVariable conversationId: Long) = messageService.findConversationMessages(conversationId)
 }

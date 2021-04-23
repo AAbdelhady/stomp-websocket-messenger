@@ -3,7 +3,7 @@ package com.aabdelhady.stomp.messenger.system.jwt
 import com.aabdelhady.stomp.messenger.feature.user.repository.UserRepository
 import com.aabdelhady.stomp.messenger.system.auth.util.JWT_COOKIE_NAME
 import com.aabdelhady.stomp.messenger.system.auth.util.getCookie
-import com.aabdelhady.stomp.messenger.system.auth.util.updateAuthorizedUserContext
+import com.aabdelhady.stomp.messenger.system.auth.util.setAuthorizedUser
 import io.jsonwebtoken.ExpiredJwtException
 import io.jsonwebtoken.MalformedJwtException
 import io.jsonwebtoken.UnsupportedJwtException
@@ -30,7 +30,7 @@ class TokenAuthenticationFilter(val tokenProvider: TokenProvider, val userReposi
         try {
             val userId = tokenProvider.getUserIdFromToken(jwt)
             val user = userRepository.findById(userId).orElseThrow { MalformedJwtException("No user found for ID: $userId") }
-            updateAuthorizedUserContext(user)
+            setAuthorizedUser(user)
         } catch (ex: Exception) {
             handleException(ex)
         }

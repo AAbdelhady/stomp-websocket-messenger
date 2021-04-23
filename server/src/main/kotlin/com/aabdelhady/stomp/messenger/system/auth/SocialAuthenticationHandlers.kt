@@ -15,7 +15,6 @@ import org.springframework.security.web.DefaultRedirectStrategy
 import org.springframework.security.web.authentication.AuthenticationFailureHandler
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler
 import org.springframework.stereotype.Component
-import java.util.*
 import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
@@ -29,7 +28,7 @@ class SocialAuthenticationSuccessHandler(val userRepository: UserRepository, val
         val loggedInUser = userRepository.findByLoginId(details.loginId)
             .map { updateExistingSocialLoginUser(it, details) }
             .orElseGet { registerNewSocialLoginUser(details) }
-        updateAuthorizedUserContext(loggedInUser)
+        setAuthorizedUser(loggedInUser)
         addTokenToResponse(loggedInUser, response)
         DefaultRedirectStrategy().sendRedirect(request, response, frontendBaseUrl)
     }

@@ -1,10 +1,13 @@
 package com.aabdelhady.stomp.messenger
 
+import com.aabdelhady.stomp.messenger.feature.conversation.model.Conversation
 import com.aabdelhady.stomp.messenger.feature.conversation.repository.ConversationRepository
+import com.aabdelhady.stomp.messenger.feature.message.core.repository.MessageRepository
 import com.aabdelhady.stomp.messenger.feature.user.model.AuthProvider
 import com.aabdelhady.stomp.messenger.feature.user.model.User
 import com.aabdelhady.stomp.messenger.feature.user.repository.UserRepository
 import com.aabdelhady.stomp.messenger.test.createDummyConversation
+import com.aabdelhady.stomp.messenger.test.createDummyMessage
 import com.aabdelhady.stomp.messenger.test.createDummyUser
 import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.beans.factory.annotation.Autowired
@@ -21,6 +24,7 @@ abstract class IntegrationTest {
 
     @Autowired private lateinit var userRepository: UserRepository
     @Autowired private lateinit var conversationRepository: ConversationRepository
+    @Autowired private lateinit var messageRepository: MessageRepository
 
     protected fun createUser(authProvider: AuthProvider = AuthProvider.GOOGLE) = createDummyUser(authProvider).let {
         delay()
@@ -30,6 +34,11 @@ abstract class IntegrationTest {
     protected fun createConversation(vararg participants: User) = createDummyConversation(participants.asList()).let {
         delay()
         conversationRepository.saveAndFlush(it)
+    }
+
+    protected fun createMessage(conversation: Conversation, sender: User) = createDummyMessage(conversation, sender).let {
+        delay()
+        messageRepository.saveAndFlush(it)
     }
 
     private fun delay() = Thread.sleep(10)

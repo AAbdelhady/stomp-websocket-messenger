@@ -22,7 +22,7 @@ fun getAuthorizedUserId(): Optional<Long> {
     return if (auth != null && auth.principal != null) Optional.of(auth.principal.toString().toLong()) else Optional.empty()
 }
 
-fun updateAuthorizedUserContext(user: User) {
+fun setAuthorizedUser(user: User) {
     val updatedAuthorities = AuthorityUtils.createAuthorityList("ROLE_USER")
     SecurityContextHolder.getContext().authentication = UsernamePasswordAuthenticationToken(user.id, null, updatedAuthorities)
 }

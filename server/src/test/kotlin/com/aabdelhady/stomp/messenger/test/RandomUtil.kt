@@ -9,6 +9,7 @@ fun randomWord(): String = faker.lorem().word()
 fun randomSentence(): String = faker.lorem().sentence()
 fun randomFirstName(): String = faker.name().firstName()
 fun randomLastName(): String = faker.name().lastName()
+fun randomEmail(): String = "${faker.funnyName().name()}@gmail.com"
 
 fun random(min: Long, max: Long): Long = Random().longs(min, max).findFirst().asLong
 

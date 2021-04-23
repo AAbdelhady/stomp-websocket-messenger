@@ -1,10 +1,8 @@
 package com.aabdelhady.stomp.messenger.feature.message.core.repository
 
-import com.aabdelhady.stomp.messenger.feature.conversation.model.Conversation
 import com.aabdelhady.stomp.messenger.feature.message.core.model.Message
 import com.aabdelhady.stomp.messenger.system.util.resultList
 import org.springframework.data.jpa.repository.JpaRepository
-import org.springframework.data.jpa.repository.Query
 import org.springframework.stereotype.Repository
 import javax.persistence.EntityManager
 

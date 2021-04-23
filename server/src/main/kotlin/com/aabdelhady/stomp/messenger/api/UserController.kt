@@ -9,9 +9,6 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("user")
 class UserController(val userService: UserService) {
-    @GetMapping
-    fun findAll() = userService.findAll()
-
     @GetMapping("me")
     fun findAuthorizedUser() = userService.findAuthorizedUser()
 

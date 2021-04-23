@@ -11,8 +11,6 @@ import org.springframework.transaction.annotation.Transactional
 @Service
 @Transactional
 class UserService(private val userRepository: UserRepository, private val userMapper: UserMapper) {
-    fun findAll(): List<UserResponse> = userRepository.findAll().let { userMapper.mapList(it) }
-
     fun findAuthorizedUser(): UserResponse {
         val authorizedUserId = getAuthorizedUserIdOrThrowUnauthorized()
         val authorizedUser = userRepository.findById(authorizedUserId).orElseThrow { BadRequestException() }
@@ -20,7 +18,7 @@ class UserService(private val userRepository: UserRepository, private val userMa
     }
 
     fun findByEmail(email: String): UserResponse {
-        val authorizedUser = userRepository.findByEmail(email).orElseThrow { BadRequestException() }
-        return userMapper.mapOne(authorizedUser)
+        val user = userRepository.findByEmail(email).orElseThrow { BadRequestException() }
+        return userMapper.mapOne(user)
     }
 }

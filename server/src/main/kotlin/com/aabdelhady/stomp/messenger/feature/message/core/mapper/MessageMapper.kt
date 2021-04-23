@@ -6,7 +6,7 @@ import com.aabdelhady.stomp.messenger.feature.user.mapper.UserMapper
 import org.springframework.stereotype.Component
 
 @Component
-class MessageMapper(val userMapper: UserMapper) {
+class MessageMapper(private val userMapper: UserMapper) {
     fun mapList(messages: List<Message>) = messages.map { mapOne(it) }
 
     fun mapOne(message: Message): MessageResponse {
