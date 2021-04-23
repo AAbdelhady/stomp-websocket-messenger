@@ -6,7 +6,35 @@ import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired
 
 internal class ConversationRepositoryIntegrationTest : IntegrationTest() {
-    @Autowired private lateinit var conversationRepository: ConversationRepository;
+    @Autowired private lateinit var conversationRepository: ConversationRepository
+
+    @Test
+    fun findByParticipantId_shouldReturnConversationWhereUserWithIdIsParticipant() {
+        // given
+        val userA = createUser()
+        val userB = createUser()
+        val userC = createUser()
+
+        val conversationA = createConversation(userA)
+        val conversationAB = createConversation(userA, userB)
+        val conversationBC = createConversation(userB, userC)
+        val conversationABC = createConversation(userA, userB, userC)
+
+        // when
+        val resultA = conversationRepository.findByParticipantId(userA.id)
+        val resultB = conversationRepository.findByParticipantId(userB.id)
+        val resultC = conversationRepository.findByParticipantId(userC.id)
+
+        // then
+        assertEquals(3, resultA.size)
+        assertTrue(resultA.containsAll(listOf(conversationA, conversationAB, conversationABC)))
+
+        assertEquals(3, resultB.size)
+        assertTrue(resultB.containsAll(listOf(conversationAB, conversationBC, conversationABC)))
+
+        assertEquals(2, resultC.size)
+        assertTrue(resultC.containsAll(listOf(conversationBC, conversationABC)))
+    }
 
     @Test
     fun findByExactParticipantsIds_shouldReturnConversationWithExactParticipants() {

@@ -2,6 +2,6 @@ server:
   secured: false
 spring:
   datasource:
-    url: ${TEST_DB_URL}
-    username: ${TEST_DB_USERNAME}
-    password: ${TEST_DB_PASSWORD}
+    url: jdbc:postgresql://localhost:5433/messenger-test
+    username: postgres
+    password: password
