@@ -2,11 +2,12 @@
   background: #f6f6f6;
   border-radius: 5px;
   display: flex;
-  height: 80px;
+  height: 40px;
   padding: 20px;
   width: 100%;
 
   .LeftSideContainer {
+    display: flex;
     width: 30%;
 
     .Avatar {
@@ -16,7 +17,7 @@
       border: 1px solid #282c34;
       height: 100%;
       margin: auto;
-      width: 80px;
+      width: 40px;
     }
 
   }
@@ -34,14 +35,14 @@
 
     .Title {
       color: black;
-      font-size: 1.5rem;
+      font-size: 1.25rem;
       font-weight: bold;
     }
 
     .LastMessageText {
       color: darkgray;
       font-size: 1rem;
-      margin-top: 1rem;
+      margin-top: .25rem;
     }
 
   }

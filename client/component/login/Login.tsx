@@ -5,10 +5,10 @@ const Login = () => {
     return (
         <div className={classes.Container}>
             <div className={classes.ButtonContainer}>
-                <a href={`${process.env.REACT_APP_API_BASE_URL}/oauth2/authorization/google`}>Google</a>
+                <a href={`${process.env.NEXT_PUBLIC_API_BASE_URL}/oauth2/authorization/google`}>Google</a>
             </div>
             <div className={classes.ButtonContainer}>
-                <a href={`${process.env.REACT_APP_API_BASE_URL}/oauth2/authorization/facebook`}>Facebook</a>
+                <a href={`${process.env.NEXT_PUBLIC_API_BASE_URL}/oauth2/authorization/facebook`}>Facebook</a>
             </div>
         </div>
     );

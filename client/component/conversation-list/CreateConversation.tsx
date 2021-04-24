@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import classes from './CreateConversation.module.scss';
-import {findUserByEmail, createConversationWithParticipants} from '../../api/api';
+import {createConversationWithParticipants, findUserByEmail} from '../../api/api';
 import {User} from '../../model/user';
 
 const CreateConversation = () => {

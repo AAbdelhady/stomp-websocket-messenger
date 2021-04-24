@@ -1,4 +1,4 @@
-import axios from '../axios';
+import axios from './axios';
 import {User} from '../model/user';
 import {Conversation} from '../model/conversation';
 import {Message} from '../model/message';
