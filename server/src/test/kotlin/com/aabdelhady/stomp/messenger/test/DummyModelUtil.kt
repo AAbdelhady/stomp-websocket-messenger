@@ -2,6 +2,7 @@ package com.aabdelhady.stomp.messenger.test
 
 import com.aabdelhady.stomp.messenger.feature.conversation.model.Conversation
 import com.aabdelhady.stomp.messenger.feature.message.core.model.Message
+import com.aabdelhady.stomp.messenger.feature.message.core.model.MessageResponse
 import com.aabdelhady.stomp.messenger.feature.user.model.AuthProvider
 import com.aabdelhady.stomp.messenger.feature.user.model.User
 import com.aabdelhady.stomp.messenger.feature.user.model.UserResponse
@@ -29,3 +30,4 @@ fun createDummyMessage(conversation: Conversation, sender: User, text: String = 
 }
 
 fun User.response() = UserResponse(id, firstName, lastName, profilePictureUrl)
+fun Message.response() = MessageResponse(id, text, sender.response(), conversation.id, sent!!)

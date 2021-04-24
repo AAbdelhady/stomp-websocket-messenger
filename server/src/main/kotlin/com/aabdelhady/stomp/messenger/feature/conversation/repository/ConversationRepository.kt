@@ -14,6 +14,7 @@ interface ConversationRepository : JpaRepository<Conversation, Long>, Conversati
 interface ConversationRepositoryCustom {
     fun findByParticipantId(participantId: Long): List<Conversation>
     fun findByExactParticipantsIds(participantsIds: Collection<Long>): Optional<Conversation>
+    fun isParticipant(conversationId: Long, userId: Long): Boolean
 }
 
 @Repository
@@ -42,6 +43,14 @@ class ConversationRepositoryImpl(val entityManager: EntityManager) : Conversatio
             .setParameter("user_ids", participantsIds)
             .setParameter("count", participantsIds.size)
             .let { optionalResult(it) }
+    }
+
+    override fun isParticipant(conversationId: Long, userId: Long): Boolean {
+        val sql = "select exists (select 1 from conversation_participants where conversation_id = :conversation_id and user_id = :user_id)"
+        return entityManager.createNativeQuery(sql)
+            .setParameter("conversation_id", conversationId)
+            .setParameter("user_id", userId)
+            .singleResult as Boolean
     }
 }
 

@@ -14,15 +14,18 @@ const val TOPIC_PREFIX = "/topic"
 fun slashJoin(vararg segments: String): String  = segments.asList().joinToString("/")
 
 @Service
-class WebSocketPushService(val userRegistry: SimpUserRegistry, val messagingTemplate: SimpMessagingTemplate, val objectMapper: ObjectMapper) {
+class WebSocketPushService(
+    private val userRegistry: SimpUserRegistry, private val messagingTemplate: SimpMessagingTemplate,
+    private val objectMapper: ObjectMapper
+) {
     fun userHasEstablishedConnection(userId: Long) = userRegistry.users.any { it.name == userId.toString() }
 
-    fun send(destination: String, payload: Any): String {
+    fun pushToTopic(destination: String, payload: Any): String {
         val endpoint: String = slashJoin(TOPIC_PREFIX, destination)
         return sendInternal(payload) { json -> messagingTemplate.convertAndSend(endpoint, json) }
     }
 
-    fun sendToUser(destination: String, receiverId: Long, payload: Any): String {
+    fun pushToUserQueue(destination: String, receiverId: Long, payload: Any): String {
         val endpoint: String = slashJoin(QUEUE_PREFIX, destination)
         return sendInternal(payload) { json -> messagingTemplate.convertAndSendToUser(receiverId.toString(), endpoint, json) }
     }

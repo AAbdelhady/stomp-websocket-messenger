@@ -30,7 +30,7 @@ const ConversationView = ({conversation}: Props) => {
         }
     }, [pushNewMessage, conversation?.id])
 
-    useWebSocketSubscription("/user/queue/message/message", newMessageCallback)
+    useWebSocketSubscription("/user/queue/messenger/message", newMessageCallback)
 
     return (
         <div className={classes.Container}>

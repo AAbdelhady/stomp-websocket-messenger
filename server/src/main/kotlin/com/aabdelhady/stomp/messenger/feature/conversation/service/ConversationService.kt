@@ -7,6 +7,7 @@ import com.aabdelhady.stomp.messenger.feature.conversation.model.ConversationRes
 import com.aabdelhady.stomp.messenger.feature.conversation.repository.ConversationRepository
 import com.aabdelhady.stomp.messenger.feature.user.repository.UserRepository
 import com.aabdelhady.stomp.messenger.system.auth.util.getAuthorizedUserIdOrThrowUnauthorized
+import com.aabdelhady.stomp.messenger.system.exception.ForbiddenException
 import com.aabdelhady.stomp.messenger.system.exception.NotFoundException
 import org.springframework.stereotype.Service
 
@@ -26,6 +27,12 @@ class ConversationService(private val conversationRepository: ConversationReposi
         val authorizedUserId = getAuthorizedUserIdOrThrowUnauthorized()
         val participantsIds = request.participantsIds.toSet().plus(authorizedUserId)
         return conversationRepository.findByExactParticipantsIds(participantsIds).orElseGet { createConversation(participantsIds) }
+    }
+
+    fun assertParticipant(conversationId: Long, userId: Long) {
+        if (!conversationRepository.isParticipant(conversationId, userId)) {
+            throw ForbiddenException()
+        }
     }
 
     private fun createConversation(participantsIds: Collection<Long>): Conversation {

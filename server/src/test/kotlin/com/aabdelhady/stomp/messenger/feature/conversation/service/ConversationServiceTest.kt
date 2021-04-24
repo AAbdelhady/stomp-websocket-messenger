@@ -6,6 +6,7 @@ import com.aabdelhady.stomp.messenger.feature.conversation.model.ConversationReq
 import com.aabdelhady.stomp.messenger.feature.conversation.repository.ConversationRepository
 import com.aabdelhady.stomp.messenger.feature.user.repository.UserRepository
 import com.aabdelhady.stomp.messenger.system.auth.util.setAuthorizedUser
+import com.aabdelhady.stomp.messenger.system.exception.ForbiddenException
 import com.aabdelhady.stomp.messenger.system.exception.NotFoundException
 import com.aabdelhady.stomp.messenger.system.exception.UnauthorizedException
 import com.aabdelhady.stomp.messenger.test.clearAuthorizedUser
@@ -14,6 +15,7 @@ import com.aabdelhady.stomp.messenger.test.createDummyUser
 import com.aabdelhady.stomp.messenger.test.randomId
 import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertDoesNotThrow
 import org.mockito.ArgumentMatchers.any
 import org.mockito.Mockito.*
 import org.mockito.stubbing.Answer
@@ -133,6 +135,30 @@ internal class ConversationServiceTest {
         verify(userRepository).findAllById(setOf(userA.id, userB.id))
 
         verify(conversationRepository).save(any(Conversation::class.java))
+    }
+
+    @Test
+    fun assertParticipant_shouldThrowForbiddenException_whenUserIsNotParticipant() {
+        // given
+        val user = createDummyUser()
+        val conversation = createDummyConversation()
+
+        `when`(conversationRepository.isParticipant(conversation.id, user.id)).thenReturn(false)
+
+        // when
+        assertThrows(ForbiddenException::class.java) { conversationService.assertParticipant(conversation.id, user.id) }
+    }
+
+    @Test
+    fun assertParticipant_shouldDoNothing_whenUserIsNotParticipant() {
+        // given
+        val user = createDummyUser()
+        val conversation = createDummyConversation()
+
+        `when`(conversationRepository.isParticipant(conversation.id, user.id)).thenReturn(true)
+
+        // when
+        assertDoesNotThrow() { conversationService.assertParticipant(conversation.id, user.id) }
     }
 
     private fun conversationSaveAnswer() = Answer { it.getArgument(0, Conversation::class.java).apply { id = randomId() } }

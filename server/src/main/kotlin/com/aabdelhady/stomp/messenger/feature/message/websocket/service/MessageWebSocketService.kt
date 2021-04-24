@@ -8,11 +8,11 @@ import org.springframework.stereotype.Service
 
 @Service
 class MessageWebSocketService(private val webSocketPushService: WebSocketPushService) : QueueWebSocketService {
-    override val destinationPrefix = "message"
+    override val destinationPrefix = "messenger"
 
     fun pushNewMessage(receiverId: Long, payload: MessageResponse) {
         val destination = slashJoin(destinationPrefix, "message")
-        webSocketPushService.sendToUser(destination, receiverId, payload)
+        webSocketPushService.pushToUserQueue(destination, receiverId, payload)
     }
 
     /*fun pushTypingNotification(receiverId: Long, payload: ConversationTypingResponse?) {

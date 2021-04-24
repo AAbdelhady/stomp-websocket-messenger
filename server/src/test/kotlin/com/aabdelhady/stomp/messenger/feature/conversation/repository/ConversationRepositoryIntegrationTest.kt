@@ -73,4 +73,24 @@ internal class ConversationRepositoryIntegrationTest : IntegrationTest() {
         assertTrue(resultF.isPresent)
         assertEquals(conversationABC, resultF.get())
     }
+
+    @Test
+    fun isParticipant_shouldReturnTrue_whenUserIsParticipant() {
+        // given
+        val userA = createUser()
+        val userB = createUser()
+        val userC = createUser()
+
+        val conversation = createConversation(userA, userB)
+
+        // when
+        val resultA = conversationRepository.isParticipant(conversation.id, userA.id)
+        val resultB = conversationRepository.isParticipant(conversation.id, userB.id)
+        val resultC = conversationRepository.isParticipant(conversation.id, userC.id)
+
+        // then
+        assertTrue(resultA)
+        assertTrue(resultB)
+        assertFalse(resultC)
+    }
 }

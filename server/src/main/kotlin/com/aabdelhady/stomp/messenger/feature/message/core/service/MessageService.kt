@@ -19,7 +19,8 @@ class MessageService(private val messageRepository: MessageRepository, private v
                      private val conversationService: ConversationService, private val messageMapper: MessageMapper,
                      private val messageWebSocketService: MessageWebSocketService) {
     fun findConversationMessages(conversationId: Long): List<MessageResponse> {
-        // TODO assert authorized user is member
+        val authorizedUserId = getAuthorizedUserIdOrThrowUnauthorized()
+        conversationService.assertParticipant(conversationId, authorizedUserId)
         return messageRepository.findByConversationId(conversationId).let { messageMapper.mapList(it) }
     }
 
@@ -27,8 +28,9 @@ class MessageService(private val messageRepository: MessageRepository, private v
         val authorizedUserId = getAuthorizedUserIdOrThrowUnauthorized()
         val conversation = conversationService.findById(conversationId)
         val message = saveNewMessage(conversation, authorizedUserId, request.text)
-        pushMessageToRecipients(conversation, authorizedUserId, message)
-        return messageMapper.mapOne(message)
+        val messageResponse = messageMapper.mapOne(message)
+        pushMessageToRecipients(conversation, authorizedUserId, messageResponse)
+        return messageResponse
     }
 
     private fun saveNewMessage(conversation: Conversation, senderId: Long, text: String): Message {
@@ -36,8 +38,7 @@ class MessageService(private val messageRepository: MessageRepository, private v
         return messageRepository.save(Message(conversation, sender, text))
     }
 
-    private fun pushMessageToRecipients(conversation: Conversation, senderId: Long, message: Message) {
-        val messageResponse = messageMapper.mapOne(message)
+    private fun pushMessageToRecipients(conversation: Conversation, senderId: Long, messageResponse: MessageResponse) {
         conversation.participants
             .filter { it.id != senderId }
             .forEach { messageWebSocketService.pushNewMessage(it.id, messageResponse) }
