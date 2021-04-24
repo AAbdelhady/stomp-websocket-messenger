@@ -1,7 +1,7 @@
 version: 2.1
 
 jobs:
-  build:
+  server:
     working_directory: ~/project/server
     docker:
       - image: circleci/openjdk:stretch
@@ -27,8 +27,20 @@ jobs:
       - run: ls -la .
       - run: ./mvnw test -Dspring.datasource.url=jdbc:postgresql://localhost:5432/messenger-test
 
+  client:
+    working_directory: ~/project/client
+    docker:
+      - image: cimg/node:16.0.0
+    steps:
+      - checkout:
+          path: ~/project
+      - run: npm install
+      - run: npm run build
+
+
 workflows:
   version: 2
   my_workflow:
     jobs:
-      - build
+      - server
+      - client
