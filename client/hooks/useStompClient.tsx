@@ -10,7 +10,7 @@ function useStompClient(user: User|null) {
             return
         }
         const client = new Client({
-            brokerURL: process.env.REACT_APP_WEBSOCKET_BASE_URL,
+            brokerURL: process.env.NEXT_PUBLIC_WEBSOCKET_BASE_URL,
             connectHeaders: {
                 login: user.id.toString(),
                 passcode: '123',

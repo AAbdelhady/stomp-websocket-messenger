@@ -2,21 +2,36 @@
   background: #f6f6f6;
   border-radius: 5px;
   display: flex;
-  height: 80px;
+  height: 40px;
   padding: 20px;
   width: 100%;
 
   .LeftSideContainer {
+    display: flex;
     width: 30%;
 
-    .Avatar {
-      background-position: center;
-      background-size: cover;
-      border-radius: 50%;
-      border: 1px solid #282c34;
-      height: 100%;
-      margin: auto;
-      width: 80px;
+    .Avatars {
+      display: inline-flex;
+      flex-direction: row-reverse;
+
+      .Avatar {
+        position: relative;
+        border: 1px solid #fff;
+        border-radius: 50%;
+        overflow: hidden;
+        width: 40px;
+
+        &:not(:last-child) {
+          margin-left: -20px;
+        }
+
+        & img {
+          width: 100%;
+          display: block;
+        }
+
+      }
+
     }
 
   }
@@ -34,14 +49,14 @@
 
     .Title {
       color: black;
-      font-size: 1.5rem;
+      font-size: 1rem;
       font-weight: bold;
     }
 
     .LastMessageText {
       color: darkgray;
       font-size: 1rem;
-      margin-top: 1rem;
+      margin-top: .25rem;
     }
 
   }

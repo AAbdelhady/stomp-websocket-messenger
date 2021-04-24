@@ -1,4 +1,4 @@
-import {useState, useEffect} from 'react';
+import {useEffect, useState} from 'react';
 import {fetchAuthorizedUser} from '../api/api';
 import {User} from '../model/user';
 
