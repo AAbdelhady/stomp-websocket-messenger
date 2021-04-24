@@ -10,13 +10,12 @@ interface Props {
 }
 
 const ConversationTile = ({conversation, conversationTileClicked}: Props) => {
-    const authorizedUser = useContext<User|null>(AuthorizedUserContext)
-    const title = conversation.participants.filter(p => p.id !== authorizedUser?.id).map(p => `${p.firstName} ${p.lastName}`).join(', ')
-    const avatar = conversation.lastMessage?.sender.profilePictureUrl
+    const title = conversation.participants.map(p => `${p.firstName} ${p.lastName}`).join(', ')
+    const avatars = conversation.participants.map(p => <span className={classes.Avatar} key={p.id}><img src={p.profilePictureUrl} alt="profile-pic"/></span>)
     return (
         <div className={classes.Container} onClick={conversationTileClicked}>
             <div className={classes.LeftSideContainer}>
-                <div className={classes.Avatar} style={{backgroundImage: `url('${avatar}'`}}/>
+                <div className={classes.Avatars}>{avatars}</div>
             </div>
             <div className={classes.RightSideContainer}>
                 <div className={classes.Title}><p>{title}</p></div>
