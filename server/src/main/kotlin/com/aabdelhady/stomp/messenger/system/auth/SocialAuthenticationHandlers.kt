@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
 @Component
-class SocialAuthenticationSuccessHandler(val userRepository: UserRepository, val tokenProvider: TokenProvider) : AuthenticationSuccessHandler {
+class SocialAuthenticationSuccessHandler(private val userRepository: UserRepository, private val tokenProvider: TokenProvider) : AuthenticationSuccessHandler {
     @Value("\${frontend.base-url}") private val frontendBaseUrl: String = ""
     @Value("\${server.secured}") private val isHttps = false
 

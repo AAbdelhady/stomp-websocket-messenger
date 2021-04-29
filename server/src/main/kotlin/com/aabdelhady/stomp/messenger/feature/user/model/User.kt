@@ -15,7 +15,8 @@ data class User(
     @Column(name = "last_name", nullable = false) var lastName: String,
     @Column(name = "email", nullable = false) @Email var email: String,
     @Column(name = "profile_picture_url") var profilePictureUrl: String? = null,
-    @Column(name = "phone") var phone: String? = null) {
+    @Column(name = "phone") var phone: String? = null,
+    @Column(name = "is_dummy", nullable = false) val dummy: Boolean = false) {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "users_seq_generator")
@@ -30,8 +31,6 @@ data class User(
     @Column(name = "modified", nullable = false)
     @UpdateTimestamp
     val modified: Instant? = null
-
-    fun getFullName() = "$firstName $lastName"
 }
 
 data class UserResponse(val id: Long?, val firstName: String, val lastName: String, val profilePictureUrl: String?)

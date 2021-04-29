@@ -1,11 +1,53 @@
 .Container {
+  display: flex;
+  flex-direction: column;
   min-width: 50%;
-}
 
-.ButtonContainer {
-  padding: 10px;
+  .Top {
+    border-bottom: 1px solid white;
+    display: flex;
+    flex-direction: column;
+    height: 50vh;
+    justify-content: center;
 
-  & button {
-    width: 100%;
+    .ButtonContainer {
+      padding: 10px;
+
+      & button {
+        width: 100%;
+      }
+
+    }
+
   }
+
+  .Bottom {
+    border-top: 1px solid white;
+    display: flex;
+    height: 50vh;
+    justify-content: center;
+
+    & > div {
+      margin: auto;
+    }
+
+    input {
+      height: 1.25rem;
+      padding: .5rem;
+    }
+
+    button {
+      margin-left: 1rem;
+      padding: .5rem 1rem;
+    }
+
+    .ExploreDummy {
+      font-size: 1rem;
+      margin-top: 1rem;
+    }
+
+  }
+
 }
+
+
