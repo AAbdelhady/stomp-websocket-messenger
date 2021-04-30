@@ -3,7 +3,7 @@ package com.aabdelhady.stomp.messenger.feature.user.service
 import com.aabdelhady.stomp.messenger.feature.user.mapper.UserMapper
 import com.aabdelhady.stomp.messenger.feature.user.model.UserResponse
 import com.aabdelhady.stomp.messenger.feature.user.repository.UserRepository
-import com.aabdelhady.stomp.messenger.system.auth.util.getAuthorizedUserIdOrThrowUnauthorized
+import com.aabdelhady.stomp.messenger.system.auth.getAuthorizedUserIdOrThrowUnauthorized
 import com.aabdelhady.stomp.messenger.system.exception.BadRequestException
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional

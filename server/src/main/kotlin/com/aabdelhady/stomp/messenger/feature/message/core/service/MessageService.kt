@@ -10,7 +10,7 @@ import com.aabdelhady.stomp.messenger.feature.message.core.repository.MessageRep
 import com.aabdelhady.stomp.messenger.feature.message.websocket.service.MessageWebSocketService
 import com.aabdelhady.stomp.messenger.feature.user.model.User
 import com.aabdelhady.stomp.messenger.feature.user.repository.UserRepository
-import com.aabdelhady.stomp.messenger.system.auth.util.getAuthorizedUserIdOrThrowUnauthorized
+import com.aabdelhady.stomp.messenger.system.auth.getAuthorizedUserIdOrThrowUnauthorized
 import com.aabdelhady.stomp.messenger.system.exception.NotFoundException
 import org.springframework.stereotype.Service
 

@@ -5,7 +5,7 @@ import com.aabdelhady.stomp.messenger.feature.conversation.model.Conversation
 import com.aabdelhady.stomp.messenger.feature.conversation.model.ConversationRequest
 import com.aabdelhady.stomp.messenger.feature.conversation.repository.ConversationRepository
 import com.aabdelhady.stomp.messenger.feature.user.repository.UserRepository
-import com.aabdelhady.stomp.messenger.system.auth.util.setAuthorizedUser
+import com.aabdelhady.stomp.messenger.system.auth.setAuthorizedUser
 import com.aabdelhady.stomp.messenger.system.exception.ForbiddenException
 import com.aabdelhady.stomp.messenger.system.exception.NotFoundException
 import com.aabdelhady.stomp.messenger.system.exception.UnauthorizedException

@@ -1,9 +1,0 @@
-server:
-  secured: false
-spring:
-  datasource:
-    url: jdbc:postgresql://localhost:5433/messenger
-    username: postgres
-    password: password
-  jpa:
-    show-sql: true

@@ -8,6 +8,7 @@ create table if not exists users
     email               varchar(255)             not null,
     phone               varchar(255),
     profile_picture_url varchar(1024),
+    is_dummy            boolean                  not null,
     created             timestamp with time zone not null,
     modified            timestamp with time zone not null
 );

@@ -5,6 +5,7 @@ import {Message} from '../model/message';
 
 const USER_ROOT = 'user';
 const CONVERSATION_ROOT = 'conversation';
+const DUMMY_ROOT = 'dummy';
 
 export const fetchAuthorizedUser = () => axios.get<User>(`${USER_ROOT}/me`)
 
@@ -19,4 +20,6 @@ export const createConversationWithParticipants = (participantsIds: number[]) =>
 export const sendMessageInConversation = (conversationId: number, text: string) => axios.post<Message>(`${CONVERSATION_ROOT}/${conversationId}`, {text: text})
 
 export const logout = () => axios.post('logout')
+
+export const loginWithDummyUser = (userId: number) => axios.post(`${DUMMY_ROOT}/login/${userId}`)
 

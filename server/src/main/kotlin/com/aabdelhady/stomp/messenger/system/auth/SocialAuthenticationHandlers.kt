@@ -3,7 +3,6 @@ package com.aabdelhady.stomp.messenger.system.auth
 import com.aabdelhady.stomp.messenger.feature.user.model.AuthProvider
 import com.aabdelhady.stomp.messenger.feature.user.model.User
 import com.aabdelhady.stomp.messenger.feature.user.repository.UserRepository
-import com.aabdelhady.stomp.messenger.system.auth.util.*
 import com.aabdelhady.stomp.messenger.system.jwt.TokenProvider
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Value
@@ -19,7 +18,7 @@ import javax.servlet.http.HttpServletRequest
 import javax.servlet.http.HttpServletResponse
 
 @Component
-class SocialAuthenticationSuccessHandler(val userRepository: UserRepository, val tokenProvider: TokenProvider) : AuthenticationSuccessHandler {
+class SocialAuthenticationSuccessHandler(private val userRepository: UserRepository, private val tokenProvider: TokenProvider) : AuthenticationSuccessHandler {
     @Value("\${frontend.base-url}") private val frontendBaseUrl: String = ""
     @Value("\${server.secured}") private val isHttps = false
 

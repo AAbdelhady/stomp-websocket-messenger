@@ -1,4 +1,4 @@
-package com.aabdelhady.stomp.messenger.system.auth.util
+package com.aabdelhady.stomp.messenger.system.auth
 
 import com.aabdelhady.stomp.messenger.feature.user.model.User
 import com.aabdelhady.stomp.messenger.system.exception.UnauthorizedException

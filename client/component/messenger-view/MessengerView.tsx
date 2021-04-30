@@ -19,10 +19,14 @@ const MessengerView = () => {
         })
     }, [])
 
+    const logoutAndReload = () => {
+        logout().then(() => { window?.location.reload() })
+    }
+
     return (
         <div className={classes.Container}>
             <div className={classes.Header}>
-                <button onClick={() => logout()} style={{float: 'right'}}>Logout</button>
+                <button onClick={logoutAndReload} style={{float: 'right'}}>Logout</button>
             </div>
             <div className={classes.Body}>
                 <div className={classes.ConversationListContainer}>

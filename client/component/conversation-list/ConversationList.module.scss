@@ -8,6 +8,11 @@
 
   .ConversationTilesContainer {
     display: flex;
+
+    .NoConversationsText {
+      font-weight: bold;
+      margin: auto;
+    }
   }
 
   .CreateConversationContainer {

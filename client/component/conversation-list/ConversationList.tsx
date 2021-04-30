@@ -10,7 +10,9 @@ interface Props {
 }
 
 const ConversationList = ({conversations, setCurrentConversation}: Props) => {
-    const tiles = conversations.map(c => <ConversationTile conversation={c} conversationTileClicked={() => setCurrentConversation(c)} key={c.id}/>)
+    const tiles = conversations.length > 0 ?
+        conversations.map(c => <ConversationTile conversation={c} conversationTileClicked={() => setCurrentConversation(c)} key={c.id}/>) :
+        <p className={classes.NoConversationsText}>No conversations</p>
     return (
         <div className={classes.Container}>
             <div className={classes.ConversationTilesContainer}>{tiles}</div>

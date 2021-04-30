@@ -8,7 +8,7 @@ import com.aabdelhady.stomp.messenger.feature.message.core.model.MessageResponse
 import com.aabdelhady.stomp.messenger.feature.message.core.repository.MessageRepository
 import com.aabdelhady.stomp.messenger.feature.message.websocket.service.MessageWebSocketService
 import com.aabdelhady.stomp.messenger.feature.user.repository.UserRepository
-import com.aabdelhady.stomp.messenger.system.auth.util.setAuthorizedUser
+import com.aabdelhady.stomp.messenger.system.auth.setAuthorizedUser
 import com.aabdelhady.stomp.messenger.system.exception.NotFoundException
 import com.aabdelhady.stomp.messenger.system.exception.UnauthorizedException
 import com.aabdelhady.stomp.messenger.test.*

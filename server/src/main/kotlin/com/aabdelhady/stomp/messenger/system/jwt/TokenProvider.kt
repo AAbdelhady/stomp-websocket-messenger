@@ -1,9 +1,9 @@
 package com.aabdelhady.stomp.messenger.system.jwt
 
 import com.aabdelhady.stomp.messenger.feature.user.model.User
-import com.aabdelhady.stomp.messenger.system.auth.util.JWT_TTL_SECONDS
-import io.jsonwebtoken.SignatureAlgorithm
+import com.aabdelhady.stomp.messenger.system.auth.JWT_TTL_SECONDS
 import io.jsonwebtoken.Jwts
+import io.jsonwebtoken.SignatureAlgorithm
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.stereotype.Component
 import java.security.Key
