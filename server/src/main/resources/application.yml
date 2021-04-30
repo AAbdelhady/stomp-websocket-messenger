@@ -12,8 +12,11 @@ spring:
       client:
         registration:
           google:
-            client-id: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-            client-secret: xxxxxxxxxxxxxxxxxxxxxxxxxx
+            client-id: xxxxxx-xxxxxx-xxxxx-xxxxxx-xxxxxx-xxxxx
+            client-secret: xxxxxxxxxxxxxxxxxxxxxxxxxxx
+          facebook:
+            client-id: xxxxxx-xxxxxx-xxxxx-xxxxxx-xxxxxx-xxxxx
+            client-secret: xxxxxxxxxxxxxxxxxxxxxxxxxxx
 jwt:
   key: yCdX5YowT730ScodFp9npvMpfoxDeWzcv3wm1g4LoSEyeHG3xDAOb1lBg3xf1G6qrvbLkXndj_xblJintYl_P4aa0wxtzJn1natxsRCzXNngMZ2OuEIAUBy-ePVf9COglrkbqaAwIyTEjUds6lZgyK1uSHGMCQDApx07D4hA2mlFxI1_-LJIOtkQEgbSii0jC5gBKui_l5vaqlKWbjnGXmoKlyTJOXX-tRR3yomtBLfVG71P0OadVd5Adxg6Uqi45vZttMXXgBwMPc1gcbCjY0CYZZ_QMghzizvlc7HCviHZjAflQh_xq7GiD9tW50Ri0wGJPJYDD9oYtUjYh2Fo0Q
 frontend:
