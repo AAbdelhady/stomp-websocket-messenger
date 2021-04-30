@@ -2,7 +2,7 @@ package com.aabdelhady.stomp.messenger.feature.user.service
 
 import com.aabdelhady.stomp.messenger.feature.user.mapper.UserMapper
 import com.aabdelhady.stomp.messenger.feature.user.repository.UserRepository
-import com.aabdelhady.stomp.messenger.system.auth.util.setAuthorizedUser
+import com.aabdelhady.stomp.messenger.system.auth.setAuthorizedUser
 import com.aabdelhady.stomp.messenger.system.exception.BadRequestException
 import com.aabdelhady.stomp.messenger.system.exception.UnauthorizedException
 import com.aabdelhady.stomp.messenger.test.clearAuthorizedUser

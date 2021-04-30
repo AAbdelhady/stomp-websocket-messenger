@@ -6,7 +6,7 @@ import com.aabdelhady.stomp.messenger.feature.conversation.model.ConversationReq
 import com.aabdelhady.stomp.messenger.feature.conversation.model.ConversationResponse
 import com.aabdelhady.stomp.messenger.feature.conversation.repository.ConversationRepository
 import com.aabdelhady.stomp.messenger.feature.user.repository.UserRepository
-import com.aabdelhady.stomp.messenger.system.auth.util.getAuthorizedUserIdOrThrowUnauthorized
+import com.aabdelhady.stomp.messenger.system.auth.getAuthorizedUserIdOrThrowUnauthorized
 import com.aabdelhady.stomp.messenger.system.exception.ForbiddenException
 import com.aabdelhady.stomp.messenger.system.exception.NotFoundException
 import org.springframework.stereotype.Service

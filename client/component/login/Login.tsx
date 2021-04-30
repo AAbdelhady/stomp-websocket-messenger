@@ -18,10 +18,7 @@ const Login = () => {
         <div className={classes.Container}>
             <div className={classes.Top}>
                 <div className={classes.ButtonContainer}>
-                    <a href={`${process.env.NEXT_PUBLIC_API_BASE_URL}/oauth2/authorization/google`}>Google</a>
-                </div>
-                <div className={classes.ButtonContainer}>
-                    <a href={`${process.env.NEXT_PUBLIC_API_BASE_URL}/oauth2/authorization/facebook`}>Facebook</a>
+                    <a href={`${process.env.NEXT_PUBLIC_API_BASE_URL}/oauth2/authorization/google`}>Google Login</a>
                 </div>
             </div>
             <div className={classes.Bottom}>

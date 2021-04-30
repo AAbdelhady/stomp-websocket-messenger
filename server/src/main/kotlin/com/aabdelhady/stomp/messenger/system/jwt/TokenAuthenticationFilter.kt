@@ -1,9 +1,9 @@
 package com.aabdelhady.stomp.messenger.system.jwt
 
 import com.aabdelhady.stomp.messenger.feature.user.repository.UserRepository
-import com.aabdelhady.stomp.messenger.system.auth.util.JWT_COOKIE_NAME
-import com.aabdelhady.stomp.messenger.system.auth.util.getCookie
-import com.aabdelhady.stomp.messenger.system.auth.util.setAuthorizedUser
+import com.aabdelhady.stomp.messenger.system.auth.JWT_COOKIE_NAME
+import com.aabdelhady.stomp.messenger.system.auth.getCookie
+import com.aabdelhady.stomp.messenger.system.auth.setAuthorizedUser
 import io.jsonwebtoken.ExpiredJwtException
 import io.jsonwebtoken.MalformedJwtException
 import io.jsonwebtoken.UnsupportedJwtException

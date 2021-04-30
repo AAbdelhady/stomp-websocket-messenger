@@ -4,12 +4,14 @@ import com.aabdelhady.stomp.messenger.feature.user.mapper.UserMapper
 import com.aabdelhady.stomp.messenger.feature.user.model.AuthProvider
 import com.aabdelhady.stomp.messenger.feature.user.model.User
 import com.aabdelhady.stomp.messenger.feature.user.repository.UserRepository
-import com.aabdelhady.stomp.messenger.system.auth.util.*
+import com.aabdelhady.stomp.messenger.system.auth.JWT_COOKIE_NAME
+import com.aabdelhady.stomp.messenger.system.auth.JWT_TTL_SECONDS
+import com.aabdelhady.stomp.messenger.system.auth.addCookie
+import com.aabdelhady.stomp.messenger.system.auth.setAuthorizedUser
 import com.aabdelhady.stomp.messenger.system.exception.BadRequestException
 import com.aabdelhady.stomp.messenger.system.jwt.TokenProvider
 import com.github.javafaker.Faker
 import org.springframework.beans.factory.annotation.Value
-import org.springframework.security.web.DefaultRedirectStrategy
 import org.springframework.stereotype.Service
 import java.util.*
 import javax.servlet.http.HttpServletRequest
@@ -22,7 +24,6 @@ private val faker = Faker()
 @Transactional
 class DummyUserService(private val userRepository: UserRepository, private val tokenProvider: TokenProvider,
                        private val userMapper: UserMapper) {
-    @Value("\${frontend.base-url}") private val frontendBaseUrl: String = ""
     @Value("\${server.secured}") private val isHttps = false
 
     fun addDummyUsers(count: Int) = repeat(count) {
